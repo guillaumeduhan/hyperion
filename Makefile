@@ -1,0 +1,2 @@
+dev:
+	yarn && yarn dev
