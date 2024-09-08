@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -50,6 +52,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -80,9 +83,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply outline-0 ring-0 focus:ring-0 shadow-none #{!important};
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-neutral-50/50;
+    font-family: "Space Grotesk", sans-serif !important;
   }
 }
