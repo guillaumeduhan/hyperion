@@ -24,12 +24,12 @@ export const useHelpers = () => {
     if (process.browser) window.open(link, "_blank");
   };
 
-  function trimString(str: string, limit = 22) {
+  const trimString = (str: string, limit = 22) => {
     if (!str) return;
     return str.length <= limit ? str : `${str.slice(0, limit)}...`;
   }
 
-  function toDate(date: Date) {
+  const toDate = (date: Date) => {
     return dayjs(date.toString()).format("D MMMM YYYY");
   }
 
