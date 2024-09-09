@@ -1,6 +1,6 @@
 'use client';
 import Login from '@/components/Login';
-import supabaseClient from '@/lib/supabase/client';
+import clientSupabase from '@/lib/supabase/client';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const AppContext = createContext<any>(undefined);
@@ -16,7 +16,7 @@ export function AppWrapper({ children }: {
       try {
         setLoading(true);
 
-        const { data, error } = await supabaseClient.auth.getUser();
+        const { data, error } = await clientSupabase.auth.getUser();
 
         if (data) setUser(data.user)
       } catch (error) {

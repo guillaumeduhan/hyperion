@@ -44,7 +44,7 @@ export const OTP: FC<{
       if (error) return setError('Sorry an error occurred. Please try again later.');
       const { session: { access_token } } = data;
       setValue(access_token);
-      router.push('/dashboard')
+      router.push('/dashboard');
     } catch (error: any) {
       setError("An unexpected error occurred. Please try again.");
       throw new Error(error);
