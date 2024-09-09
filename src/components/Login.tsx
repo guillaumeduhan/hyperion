@@ -9,7 +9,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useHelpers } from "@/hooks/useHelpers";
-import supabaseClient from '@/lib/supabase/client';
+import clientSupabase from '@/lib/supabase/client';
 import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
@@ -33,7 +33,7 @@ export const OTP: FC<{
     try {
       setLoading(true);
 
-      let { data, error }: any = await supabaseClient
+      let { data, error }: any = await clientSupabase
         .auth
         .verifyOtp({
           email,
@@ -42,8 +42,8 @@ export const OTP: FC<{
         })
 
       if (error) return setError('Sorry an error occurred. Please try again later.');
-      const { access_token } = data;
-      setValue(access_token)
+      const { session: { access_token } } = data;
+      setValue(access_token);
       router.push('/dashboard')
     } catch (error: any) {
       setError("An unexpected error occurred. Please try again.");
@@ -116,7 +116,7 @@ const Login = () => {
       if (!validateEmail(email)) return setError('Please enter a valid email.')
       setLoading(true);
 
-      let { data, error }: any = await supabaseClient
+      let { data, error }: any = await clientSupabase
         .auth
         .signInWithOtp({
           email
