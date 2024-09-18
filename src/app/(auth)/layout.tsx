@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ViewTransitions } from 'next-view-transitions';
+import { Toaster } from 'sonner';
 import "../globals.scss";
 import { AppWrapper } from "./context";
 
@@ -8,21 +9,21 @@ export const metadata: Metadata = {
   description: "Generated with Next.js.",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <ViewTransitions>
           <AppWrapper>
             {children}
           </AppWrapper>
-        </body>
-      </html>
-    </ViewTransitions>
+          <Toaster position="top-right" richColors />
+        </ViewTransitions>
+      </body>
+    </html>
   );
 };

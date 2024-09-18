@@ -1,7 +1,10 @@
 'use client';
+import Header from '@/components/Header';
 import Login from '@/components/Login';
 import clientSupabase from '@/lib/supabase/client';
+import { Loader2 } from 'lucide-react';
 import { createContext, useContext, useEffect, useState } from 'react';
+
 
 const AppContext = createContext<any>(undefined);
 
@@ -29,7 +32,9 @@ export function AppWrapper({ children }: {
     fetchCurrentUser();
   }, []);
 
-  if (loading) return <div>Loading ...</div>
+  if (loading) return <div className="dark:bg-black w-full h-screen flex items-center justify-center">
+    <Loader2 className="animate-spin" />
+  </div>
 
   if (!user) return <Login />
 
@@ -38,6 +43,7 @@ export function AppWrapper({ children }: {
       user,
       setUser
     }}>
+      <Header />
       {children}
     </AppContext.Provider>
   );
