@@ -1,4 +1,5 @@
 'use client';
+import { useAppContext } from '@/app/(auth)/context';
 import ButtonComponent from '@/components/ButtonComponent';
 import { Button } from "@/components/ui/button";
 import {
@@ -18,8 +19,22 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
+import { useEffect, useState } from 'react';
+import { saveUser } from '../page';
 
-export default function ProfileGeneral() {
+export default function SettingsPage() {
+  const { user, setUser } = useAppContext();
+  const [data, setData] = useState<any>({
+    email_notifications: false
+  });
+
+  useEffect(() => {
+    if (user) {
+      const { user_metadata } = user;
+      setData(user_metadata)
+    }
+  }, [user]);
+
   return <div className="grid gap-6">
     <Card className="card">
       <CardHeader>
@@ -28,7 +43,17 @@ export default function ProfileGeneral() {
             <CardTitle>Email notifications</CardTitle>
             <CardDescription>Turn this on if you want to receive e-mail notifications.</CardDescription>
           </div>
-          <Switch id="airplane-mode" />
+          <Switch
+            checked={data?.email_notifications}
+            name="email_notifications"
+            id="email_notifications"
+            onCheckedChange={(b: boolean) => saveUser({
+              metadata: {
+                email_notifications: b
+              },
+              setUser
+            })}
+          />
         </header>
       </CardHeader>
     </Card>
