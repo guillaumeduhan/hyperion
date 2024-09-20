@@ -1,8 +1,6 @@
 'use client';
 import Header from '@/components/Header';
-import Login from '@/components/Login';
 import clientSupabase from '@/lib/supabase/client';
-import { Loader2 } from 'lucide-react';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 
@@ -32,19 +30,15 @@ export function AppWrapper({ children }: {
     fetchCurrentUser();
   }, []);
 
-  if (loading) return <div className="dark:bg-black w-full h-screen flex items-center justify-center">
-    <Loader2 className="animate-spin" />
-  </div>
-
-  if (!user) return <Login />
-
   return (
     <AppContext.Provider value={{
       user,
       setUser
     }}>
-      <Header />
-      {children}
+      <main className="container grid gap-8">
+        <Header />
+        {children}
+      </main>
     </AppContext.Provider>
   );
 }

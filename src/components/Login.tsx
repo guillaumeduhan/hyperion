@@ -1,6 +1,5 @@
 
 import ButtonComponent from "@/components/ButtonComponent";
-import Logo from "@/components/Logo";
 import { Input } from '@/components/ui/input';
 import {
   InputOTP,
@@ -133,10 +132,7 @@ const Login = () => {
 
   return (
     <div className="grid gap-8 dark:border-neutral-600 rounded-xl mx-auto max-w-[500px] w-full px-2">
-      <header className="flex items-center justify-center pb-4">
-        <Logo />
-      </header>
-      <div className="bg-white rounded-xl px-8 py-6 shadow-lg">
+      <div className="bg-white rounded-xl py-6 shadow-lg">
         {otp && <OTP {...{
           email: user.email,
           resendCode: () => signIn()
@@ -175,7 +171,7 @@ const Login = () => {
 }
 
 export default function LoginPage() {
-  return <div className="w-full h-screen flex items-center justify-center bg-neutral-50">
+  return <div className="w-full flex items-center justify-center">
     <Login />
   </div>
 }
