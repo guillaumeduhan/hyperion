@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -88,7 +88,7 @@
 
   body {
     @apply bg-neutral-50/50 dark:bg-black dark:text-white;
-    font-family: "Space Grotesk", sans-serif !important;
+    font-family: "Roboto Condensed", sans-serif;
   }
 
   .card {
