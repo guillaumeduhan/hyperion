@@ -28,7 +28,7 @@ export default function Header() {
           <DialogTrigger asChild>
             <Button>Login / Signup</Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="dark:border-neutral-800">
             <Login />
           </DialogContent>
         </Dialog>

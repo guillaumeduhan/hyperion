@@ -1,4 +1,5 @@
 
+import { useAppContext } from '@/app/context';
 import ButtonComponent from "@/components/ButtonComponent";
 import { Input } from '@/components/ui/input';
 import {
@@ -27,6 +28,7 @@ export const OTP: FC<{
   const [token, setToken] = useState("");
   const { loading, setLoading, error, setError } = useHelpers();
   const router = useRouter();
+  const { user, setUser } = useAppContext();
 
   const verifyCode = async () => {
     try {
@@ -41,9 +43,11 @@ export const OTP: FC<{
         })
 
       if (error) return setError('Sorry an error occurred. Please try again later.');
-      const { session: { access_token } } = data;
+      const { user: userData, session: { access_token } } = data;
+
+      console.log(data)
       setValue(access_token);
-      router.push('/dashboard');
+      setUser(userData);
     } catch (error: any) {
       setError("An unexpected error occurred. Please try again.");
       throw new Error(error);
@@ -132,7 +136,7 @@ const Login = () => {
 
   return (
     <div className="grid gap-8 dark:border-neutral-600 rounded-xl mx-auto max-w-[500px] w-full px-2">
-      <div className="bg-white rounded-xl py-6 shadow-lg">
+      <div className="rounded-xl py-6 shadow-lg">
         {otp && <OTP {...{
           email: user.email,
           resendCode: () => signIn()
