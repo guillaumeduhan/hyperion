@@ -16,7 +16,7 @@ Button
 export default function Header() {
   const { user } = useAppContext();
   const router = useRouter();
-  return <header className="py-3 dark:border-neutral-800 w-full flex items-center justify-between">
+  return <header className="p-2 lg:p-4 dark:border-neutral-800 w-full flex items-center justify-between">
     <div className="flex gap-6 items-center">
       <Logo {...{ user, text: true }} />
     </div>

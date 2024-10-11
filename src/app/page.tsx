@@ -1,3 +1,4 @@
+import Landing from '@/components/Landing';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function MainPage() {
-  return <div>You are on the main page</div>
+  return <Landing />
 }

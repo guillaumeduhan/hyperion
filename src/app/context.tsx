@@ -35,7 +35,7 @@ export function AppWrapper({ children }: {
       user,
       setUser
     }}>
-      <main className="container grid gap-8">
+      <main className="grid gap-8">
         <Header />
         {children}
       </main>
