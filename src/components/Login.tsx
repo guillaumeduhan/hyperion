@@ -1,6 +1,6 @@
 
+import { useAppContext } from '@/app/context';
 import ButtonComponent from "@/components/ButtonComponent";
-import Logo from "@/components/Logo";
 import { Input } from '@/components/ui/input';
 import {
   InputOTP,
@@ -28,6 +28,7 @@ export const OTP: FC<{
   const [token, setToken] = useState("");
   const { loading, setLoading, error, setError } = useHelpers();
   const router = useRouter();
+  const { user, setUser } = useAppContext();
 
   const verifyCode = async () => {
     try {
@@ -42,9 +43,11 @@ export const OTP: FC<{
         })
 
       if (error) return setError('Sorry an error occurred. Please try again later.');
-      const { session: { access_token } } = data;
+      const { user: userData, session: { access_token } } = data;
+
+      console.log(data)
       setValue(access_token);
-      router.push('/dashboard');
+      setUser(userData);
     } catch (error: any) {
       setError("An unexpected error occurred. Please try again.");
       throw new Error(error);
@@ -133,10 +136,7 @@ const Login = () => {
 
   return (
     <div className="grid gap-8 dark:border-neutral-600 rounded-xl mx-auto max-w-[500px] w-full px-2">
-      <header className="flex items-center justify-center pb-4">
-        <Logo />
-      </header>
-      <div className="bg-white rounded-xl px-8 py-6 shadow-lg">
+      <div className="rounded-xl py-6 shadow-lg">
         {otp && <OTP {...{
           email: user.email,
           resendCode: () => signIn()
@@ -175,7 +175,7 @@ const Login = () => {
 }
 
 export default function LoginPage() {
-  return <div className="w-full h-screen flex items-center justify-center bg-neutral-50">
+  return <div className="w-full flex items-center justify-center">
     <Login />
   </div>
 }

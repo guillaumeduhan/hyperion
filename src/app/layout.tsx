@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ViewTransitions } from 'next-view-transitions';
+import { Toaster } from 'sonner';
+import { AppWrapper } from "./context";
 import "./globals.scss";
 
 export const metadata: Metadata = {
@@ -13,10 +15,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </ViewTransitions>
+    <html lang="en">
+      <body>
+        <ViewTransitions>
+          <AppWrapper>
+            {children}
+          </AppWrapper>
+          <Toaster position="top-right" richColors />
+        </ViewTransitions>
+      </body>
+    </html>
   );
-}
+};

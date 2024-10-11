@@ -1,5 +1,5 @@
 'use client';
-import { useAppContext } from '@/app/(auth)/context';
+import { useAppContext } from '@/app/context';
 import ButtonComponent from '@/components/ButtonComponent';
 import { Button } from "@/components/ui/button";
 import {
